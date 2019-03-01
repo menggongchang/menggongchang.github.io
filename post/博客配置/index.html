@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2019-03-01T16:25:11&#43;08:00" />
 <meta itemprop="dateModified" content="2019-03-01T16:25:11&#43;08:00" />
-<meta itemprop="wordCount" content="489">
+<meta itemprop="wordCount" content="507">
 
 
 
@@ -131,8 +131,8 @@
         <div class="post-category">
             <a href="/categories/%E4%B8%AD%E6%96%87/"> 中文 </a>
             </div>
-          <span class="more-meta"> 约 489 字 </span>
-          <span class="more-meta"> 预计阅读 1 分钟 </span>
+          <span class="more-meta"> 约 507 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
         
       </div>
     </header>
@@ -220,17 +220,17 @@ git push -u origin master</pre></td></tr></table>
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="cp">#!/bin/bash
-</span><span class="cp"></span>   
+</span><span class="cp"></span>       
 <span class="nb">echo</span> -e <span class="s2">&#34;\033[0;32mDeploying updates to GitHub...\033[0m&#34;</span>
-   
+       
 <span class="c1"># Build the project.</span>
 hugo -t even <span class="c1"># if using a theme, replace with `hugo -t &lt;YOURTHEME&gt;`</span>
-   
+       
 <span class="c1"># Go To Public folder</span>
 <span class="nb">cd</span> public
 <span class="c1"># Add changes to git.</span>
 git add .
-   
+       
 <span class="c1"># Commit changes.</span>
 <span class="nv">msg</span><span class="o">=</span><span class="s2">&#34;rebuilding site `date`&#34;</span>
 <span class="k">if</span> <span class="o">[</span> <span class="nv">$#</span> -eq <span class="m">1</span> <span class="o">]</span>
@@ -248,9 +248,13 @@ git push origin master
 
 <li><p>添加评论</p>
 
-<p>来必力：<a href="https://livere.com">https://livere.com</a> （来自韩国，使用邮箱注册。）</p>
+<ul>
+<li><p>来必力：<a href="https://livere.com">https://livere.com</a> （来自韩国，使用邮箱注册。）</p>
 
 <p>选择免费的city版本安装，安装后复制uid字段，添加到博客的配置文件‘livere_uid’字段。</p></li>
+
+<li><p>Gitment：<a href="https://imsun.net/posts/gitment-introduction/">使用 GitHub Issues 搭建评论系统</a></p></li>
+</ul></li>
 </ol>
 
 <h4 id="二-博客使用">二 博客使用</h4>
@@ -323,18 +327,31 @@ git push origin master
       })(document, 'script');
     </script>
     <noscript>Please enable JavaScript to view the comments powered by <a href="https://livere.com/">LiveRe.</a></noscript>
-    </div>
+    </div><div id="comments-gitment"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitment@0.0.3/style/default.min.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitment@0.0.3/dist/gitment.browser.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitment = new Gitment({
+        id: '2019-03-01 16:25:11 \x2b0800 CST',
+        title: '博客配置',
+        link: decodeURI(location.href),
+        desc: '一 博客配置 安装引擎：Hugo 选择主题：Even 关联 GitHub 运行命令hugo -t even Hugo将编译所有文件并输出到public目录，你需要在github',
+        owner: 'menggongchang',
+        repo: 'comment',
+        oauth: {
+          client_id: '2c3c926122f4c09d8aac',
+          client_secret: '975341b046318c393dc8e3fe7aad003b46cfc210'
+        }
+      });
+      gitment.render('comments-gitment');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
 
       </div>
     </main>
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
-      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
-      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
-      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
-      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
   <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
