@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>中文 on 梦工厂 - A super concise theme for Hugo</title>
+    <link>http://localhost:1313/categories/%E4%B8%AD%E6%96%87/</link>
+    <description>Recent content in 中文 on 梦工厂 - A super concise theme for Hugo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 01 Mar 2019 16:25:11 +0800</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/categories/%E4%B8%AD%E6%96%87/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>博客配置</title>
+      <link>http://localhost:1313/post/%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Fri, 01 Mar 2019 16:25:11 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE/</guid>
+      <description>一 博客配置 安装引擎：Hugo 选择主题：Even 关联 GitHub 运行命令hugo -t even Hugo将编译所有文件并输出到public目录，你需要在github</description>
+    </item>
+    
+  </channel>
+</rss>
