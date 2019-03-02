@@ -19,5 +19,14 @@
       <description></description>
     </item>
     
+    <item>
+      <title>网络</title>
+      <link>http://localhost:1313/categories/%E7%BD%91%E7%BB%9C/</link>
+      <pubDate>Sat, 02 Mar 2019 20:50:23 +0800</pubDate>
+      
+      <guid>http://localhost:1313/categories/%E7%BD%91%E7%BB%9C/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>
