@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>操作系统 on 梦工厂</title>
+    <link>http://localhost:1313/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
+    <description>Recent content in 操作系统 on 梦工厂</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 03 Mar 2019 15:57:20 +0800</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>文件系统</title>
+      <link>http://localhost:1313/post/%E7%A1%AC%E7%9B%98/</link>
+      <pubDate>Sun, 03 Mar 2019 15:57:20 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/%E7%A1%AC%E7%9B%98/</guid>
+      <description>一：磁盘 硬盘的读写原理 读写0柱面0磁头4扇区，开销：寻道时间+旋转时间。 寻址方式 CHS（cylinder head sector） 磁头数最大为255 (</description>
+    </item>
+    
+  </channel>
+</rss>
