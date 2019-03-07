@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>About - 梦工厂</title>
+  <title>HTTP协议 - 梦工厂</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="梦工厂" /><meta name="description" content="学历 硕士：中山大学-数据科学与计算机学院（2016.9-2019.7） 学士：华南理工大学-计算机科学与工程学院（ 2012.9-2016.7）" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="梦工厂" /><meta name="description" content="深度解密HTTP通信细节" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.53 with even 4.0.0" />
 
 
-<link rel="canonical" href="http://localhost:1313/post/about/" />
+<link rel="canonical" href="http://localhost:1313/post/http%E5%8D%8F%E8%AE%AE/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -38,26 +38,26 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="About" />
-<meta property="og:description" content="学历 硕士：中山大学-数据科学与计算机学院（2016.9-2019.7） 学士：华南理工大学-计算机科学与工程学院（ 2012.9-2016.7）" />
+<meta property="og:title" content="HTTP协议" />
+<meta property="og:description" content="深度解密HTTP通信细节" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:1313/post/about/" /><meta property="article:published_time" content="2019-02-28T23:02:36&#43;08:00"/>
-<meta property="article:modified_time" content="2019-02-28T23:02:36&#43;08:00"/>
+<meta property="og:url" content="http://localhost:1313/post/http%E5%8D%8F%E8%AE%AE/" /><meta property="article:published_time" content="2019-03-05T14:38:52&#43;08:00"/>
+<meta property="article:modified_time" content="2019-03-05T14:38:52&#43;08:00"/>
 
-<meta itemprop="name" content="About">
-<meta itemprop="description" content="学历 硕士：中山大学-数据科学与计算机学院（2016.9-2019.7） 学士：华南理工大学-计算机科学与工程学院（ 2012.9-2016.7）">
-
-
-<meta itemprop="datePublished" content="2019-02-28T23:02:36&#43;08:00" />
-<meta itemprop="dateModified" content="2019-02-28T23:02:36&#43;08:00" />
-<meta itemprop="wordCount" content="189">
+<meta itemprop="name" content="HTTP协议">
+<meta itemprop="description" content="深度解密HTTP通信细节">
 
 
+<meta itemprop="datePublished" content="2019-03-05T14:38:52&#43;08:00" />
+<meta itemprop="dateModified" content="2019-03-05T14:38:52&#43;08:00" />
+<meta itemprop="wordCount" content="12">
 
-<meta itemprop="keywords" content="" />
+
+
+<meta itemprop="keywords" content="总结,网络," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="About"/>
-<meta name="twitter:description" content="学历 硕士：中山大学-数据科学与计算机学院（2016.9-2019.7） 学士：华南理工大学-计算机科学与工程学院（ 2012.9-2016.7）"/>
+<meta name="twitter:title" content="HTTP协议"/>
+<meta name="twitter:description" content="深度解密HTTP通信细节"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -124,12 +124,14 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">About</h1>
+      <h1 class="post-title">HTTP协议</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2019-02-28 </span>
-        
-          <span class="more-meta"> 约 189 字 </span>
+        <span class="post-time"> 2019-03-05 </span>
+        <div class="post-category">
+            <a href="/categories/%E7%BD%91%E7%BB%9C/"> 网络 </a>
+            </div>
+          <span class="more-meta"> 约 12 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
         
       </div>
@@ -138,71 +140,11 @@
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
-    <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#学历">学历</a></li>
-<li><a href="#实习经历">实习经历</a></li>
-<li><a href="#工作经历">工作经历</a></li>
-<li><a href="#格言">格言</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
+    
   </div>
 </div>
     <div class="post-content">
-      
-
-<h4 id="学历">学历</h4>
-
-<ul>
-<li><p>硕士：中山大学-数据科学与计算机学院（2016.9-2019.7）</p></li>
-
-<li><p>学士：华南理工大学-计算机科学与工程学院（ 2012.9-2016.7）</p></li>
-</ul>
-
-<h4 id="实习经历">实习经历</h4>
-
-<ol>
-<li><p>字节跳动</p>
-
-<ul>
-<li><p>时间：2018.6-2018.9</p></li>
-
-<li><p>部门：商业产品-客户增长（北京）</p></li>
-
-<li><p>岗位：Java后台开发实习生</p></li>
-</ul></li>
-
-<li><p>金山软件</p>
-
-<ul>
-<li><p>时间：2015.7-2015.9</p></li>
-
-<li><p>部门：WPS办公软件（珠海）</p></li>
-
-<li><p>岗位：Android开发实习生</p></li>
-</ul></li>
-</ol>
-
-<h4 id="工作经历">工作经历</h4>
-
-<ul>
-<li><strong><em>To be continued~</em></strong></li>
-</ul>
-
-<h4 id="格言">格言</h4>
-
-<ul>
-<li>掌握核心科技！</li>
-</ul>
+      <p><a href="https://mp.weixin.qq.com/s/9rScV6DWuYFEq50AZgrU0A">深度解密HTTP通信细节</a></p>
 
     </div>
 
@@ -214,7 +156,7 @@
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
     <span class="item-content">
-        2019-02-28
+        2019-03-05
         
     </span>
   </p>
@@ -222,11 +164,18 @@
   
 </div>
 <footer class="post-footer">
-      
+      <div class="post-tags">
+          <a href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
+          <a href="/tags/%E7%BD%91%E7%BB%9C/">网络</a>
+          </div>
       <nav class="post-nav">
-        
-        <a class="next" href="/post/%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA/">
-            <span class="next-text nav-default">理解计算机</span>
+        <a class="prev" href="/post/%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">理解计算机</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/linux%E7%B3%BB%E7%BB%9F/">
+            <span class="next-text nav-default">Linux系统</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
@@ -267,8 +216,8 @@
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2019-02-28 23:02:36 \x2b0800 CST',
-        title: 'About',
+        id: '2019-03-05 14:38:52 \x2b0800 CST',
+        title: 'HTTP协议',
         clientID: '2c3c926122f4c09d8aac',
         clientSecret: '975341b046318c393dc8e3fe7aad003b46cfc210',
         repo: 'blog',

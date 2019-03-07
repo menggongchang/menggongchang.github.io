@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on 梦工厂</title>
+    <link>http://localhost:1313/categories/linux/</link>
+    <description>Recent content in Linux on 梦工厂</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 04 Mar 2019 22:32:23 +0800</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Linux系统</title>
+      <link>http://localhost:1313/post/linux%E7%B3%BB%E7%BB%9F/</link>
+      <pubDate>Mon, 04 Mar 2019 22:32:23 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/linux%E7%B3%BB%E7%BB%9F/</guid>
+      <description>一：进程 - 当我谈 scheduling 时我在谈什么？ - 谈谈调度 - Linux O(1) 二：内存 2.1 地址空间 2.1.1 Linux进程地址空间 代码段 .txt：编译后的机器指令，内存共享； 数据段</description>
+    </item>
+    
+  </channel>
+</rss>

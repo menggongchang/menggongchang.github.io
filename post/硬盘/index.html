@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2019-03-03T15:57:20&#43;08:00" />
 <meta itemprop="dateModified" content="2019-03-03T15:57:20&#43;08:00" />
-<meta itemprop="wordCount" content="1069">
+<meta itemprop="wordCount" content="1607">
 
 
 
@@ -131,8 +131,8 @@
         <div class="post-category">
             <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"> 操作系统 </a>
             </div>
-          <span class="more-meta"> 约 1069 字 </span>
-          <span class="more-meta"> 预计阅读 3 分钟 </span>
+          <span class="more-meta"> 约 1607 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
         
       </div>
     </header>
@@ -157,6 +157,7 @@
 <li><a href="#2-2-1-ext2磁盘数据结构">2.2.1 Ext2磁盘数据结构</a></li>
 </ul></li>
 </ul></li>
+<li><a href="#2-3-linux-vfs-virtual-filesystem-switch">2.3 Linux VFS （Virtual Filesystem Switch）</a></li>
 </ul></li>
 <li><a href="#三-文件">三：文件</a></li>
 </ul></li>
@@ -261,6 +262,8 @@
 
 <h4 id="2-2-ext2文件系统">2.2 Ext2文件系统</h4>
 
+<p><a href="http://cn.linux.vbird.org/linux_basic/0230filesystem.php#harddisk">鸟哥：Linux 磁盘与文件系统管理</a></p>
+
 <h6 id="2-2-1-ext2磁盘数据结构">2.2.1 Ext2磁盘数据结构</h6>
 
 <p><img src="/disk/Ext2磁盘数据结构.png" alt="Ext2磁盘数据结构" /></p>
@@ -281,11 +284,47 @@
 </ul>
 
 <p>例如：32GB的Ext2分区，块的大小是4kb。每个4kb的位图块描述32K个数据块，即128MB。因此最多需要256个块组。</p></li>
+
+<li><p>超级块：记录此 filesystem 的整体信息，包括inode/block的总量、使用量、剩余量， 以及文件系统的格式与相关信息等；</p></li>
+
+<li><p>inode：记录文件的属性，一个文件占用一个inode，同时记录此文件的数据所在的 block 号码；</p></li>
+
+<li><p>block：实际记录文件的内容，若文件太大时，会占用多个 block 。</p></li>
 </ol>
+
+<h4 id="2-3-linux-vfs-virtual-filesystem-switch">2.3 Linux VFS （Virtual Filesystem Switch）</h4>
+
+<p><img src="http://cn.linux.vbird.org/linux_basic/0230filesystem_files/vfs.gif" alt="" /></p>
 
 <h3 id="三-文件">三：文件</h3>
 
-<p>文件的结构</p>
+<ol>
+<li><p>文件属性</p>
+
+<p><img src="http://cn.linux.vbird.org/linux_basic/0210filepermission_files/0210filepermission_2.gif" alt="" /></p></li>
+
+<li><p>文件类型</p>
+
+<ul>
+<li>当为[ d ]则是目录，例如上表档名为<code>.gconf</code>的那一行；</li>
+<li>当为[ - ]则是文件，例如上表档名为<code>install.log</code>那一行；</li>
+<li>若是[ l ]则表示为连结档(link file)； </li>
+</ul></li>
+
+<li><p>改变权限，chmod</p>
+
+<p>Linux文件权限三个一组, <code>r:4,w:2,x:1</code>, 每种身份(root/group/others)的权限是(r/w/x)分数累计的。</p>
+
+<p>常常我们以vim编辑一个shell的文字批处理文件后，他的权限通常是 -rw-rw-r&ndash; 也就是664， 如果要将该文件变成可执行文件，并且不要让其他人修改此一文件的话， 那么就需要-rwxr-xr-x这样的权限，此时就得要下达： chmod 755 test.sh 的指令。</p></li>
+
+<li><p><strong><a href="https://blog.csdn.net/cywosp/article/details/38965239">Linux中的文件描述符与打开文件之间的关系</a></strong></p></li>
+
+<li><p><a href="https://www.jianshu.com/p/dde6a01c4094">软连接和硬连接</a></p>
+
+<p>硬链接： 与普通文件没什么不同，inode 都指向同一个文件在硬盘中的区块</p>
+
+<p>软链接： 保存了其代表的文件的绝对路径，是另外一种文件，在硬盘上有独立的区块，访问时替换自身路径</p></li>
+</ol>
 
 <p>参考资料：</p>
 
@@ -315,9 +354,9 @@
           <a href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/about/">
+        <a class="prev" href="/post/linux%E7%B3%BB%E7%BB%9F/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">About</span>
+            <span class="prev-text nav-default">Linux系统</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/tcpip%E5%8D%8F%E8%AE%AE%E6%A0%88/">

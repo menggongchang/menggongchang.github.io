@@ -173,7 +173,7 @@
 <li>
 <ul>
 <li><a href="#4-1-user-datagram-protocol">4.1 User Datagram Protocol</a></li>
-<li><a href="#4-2-transmission-control-protocol-post-tcp协议">4.2 <a href="/post/TCP协议">Transmission Control Protocol</a></a></li>
+<li><a href="#4-2-transmission-control-protocol-post-tcp协议">4.2 <a href="/post/tcp协议">Transmission Control Protocol</a></a></li>
 <li><a href="#4-3-常见问题">4.3 常见问题</a></li>
 </ul></li>
 </ul></li>
@@ -455,7 +455,7 @@
 <p>UDP preserves the message boundary defined by the application.  It never joins two application messages together, or divides a single application message into parts.</p></li>
 </ol>
 
-<h6 id="4-2-transmission-control-protocol-post-tcp协议">4.2 <a href="/post/TCP协议">Transmission Control Protocol</a></h6>
+<h6 id="4-2-transmission-control-protocol-post-tcp协议">4.2 <a href="/post/tcp协议">Transmission Control Protocol</a></h6>
 
 <ol>
 <li><p>MSS（TCP Maximum Segment Size） 就是TCP数据包每次能够传输的最大数据</p>
@@ -503,7 +503,7 @@
 <td class="lntd">
 <pre class="chroma"> 1. Close把描述符的引用计数减1，仅在该计数变为0时才关闭套接字。而使用shutdown可以不管引用计数就激发TCP的正常连接终止序列。
  2. Close终止读和写两个方向的数据传送。但有时候我们需要告知对端我们完成了数据发送，但对端仍有数据要发送给我们，这时就需要使用shutdown。
-   注意！套接字的**半关闭**指的是 关闭连接的写这一半。</pre></td></tr></table>
+   注意！套接字的**半关闭**指的是关闭连接的写这一半。</pre></td></tr></table>
 </div>
 </div></li>
 </ol>

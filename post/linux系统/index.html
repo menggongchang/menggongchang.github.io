@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Linux系统 - 梦工厂</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="梦工厂" /><meta name="description" content="一：进程 - 当我谈 scheduling 时我在谈什么？ - 谈谈调度 - Linux O(1) 二：内存 2.1 地址空间 2.1.1 Linux进程地址空间 代码段 .txt：编译后的机器指令，内存共享； 数据段" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.53 with even 4.0.0" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/linux%E7%B3%BB%E7%BB%9F/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Linux系统" />
+<meta property="og:description" content="一：进程 - 当我谈 scheduling 时我在谈什么？ - 谈谈调度 - Linux O(1) 二：内存 2.1 地址空间 2.1.1 Linux进程地址空间 代码段 .txt：编译后的机器指令，内存共享； 数据段" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/linux%E7%B3%BB%E7%BB%9F/" /><meta property="article:published_time" content="2019-03-04T22:32:23&#43;08:00"/>
+<meta property="article:modified_time" content="2019-03-04T22:32:23&#43;08:00"/>
+
+<meta itemprop="name" content="Linux系统">
+<meta itemprop="description" content="一：进程 - 当我谈 scheduling 时我在谈什么？ - 谈谈调度 - Linux O(1) 二：内存 2.1 地址空间 2.1.1 Linux进程地址空间 代码段 .txt：编译后的机器指令，内存共享； 数据段">
+
+
+<meta itemprop="datePublished" content="2019-03-04T22:32:23&#43;08:00" />
+<meta itemprop="dateModified" content="2019-03-04T22:32:23&#43;08:00" />
+<meta itemprop="wordCount" content="4085">
+
+
+
+<meta itemprop="keywords" content="总结," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linux系统"/>
+<meta name="twitter:description" content="一：进程 - 当我谈 scheduling 时我在谈什么？ - 谈谈调度 - Linux O(1) 二：内存 2.1 地址空间 2.1.1 Linux进程地址空间 代码段 .txt：编译后的机器指令，内存共享； 数据段"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">梦工厂</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/post/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">梦工厂</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Linux系统</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-03-04 </span>
+        <div class="post-category">
+            <a href="/categories/linux/"> Linux </a>
+            </div>
+          <span class="more-meta"> 约 4085 字 </span>
+          <span class="more-meta"> 预计阅读 9 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#一-进程">一：进程</a></li>
+<li><a href="#二-内存">二：内存</a>
+<ul>
+<li><a href="#2-1-地址空间">2.1 地址空间</a>
+<ul>
+<li><a href="#2-1-1-linux进程地址空间">2.1.1 Linux进程地址空间</a></li>
+<li><a href="#2-1-2-常见问题">2.1.2 常见问题</a></li>
+</ul></li>
+<li><a href="#2-2-地址翻译">2.2 地址翻译</a></li>
+<li><a href="#2-3-内存分配和回收">2.3 内存分配和回收</a></li>
+</ul></li>
+<li><a href="#三-io">三：IO</a>
+<ul>
+<li>
+<ul>
+<li><a href="#3-1-unix下5种io模型-https-www-jianshu-com-p-20dd66a829a6">3.1 <a href="https://www.jianshu.com/p/20dd66a829a6">Unix下5种IO模型</a></a></li>
+<li><a href="#3-2-linux-io-文件访问方式">3.2 Linux IO/文件访问方式</a></li>
+<li><a href="#3-3-高并发io-select-poll-epoll">3.3 高并发IO：select/poll/epoll</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#四-常见问题">四：常见问题</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<h1 id="一-进程">一：进程</h1>
+
+<p><img src="/Linux/linux schedule.jpeg" alt="linux schedule" /></p>
+
+<p>- <a href="https://zhuanlan.zhihu.com/p/33389178">当我谈 scheduling 时我在谈什么？</a></p>
+
+<p>- <a href="https://zhuanlan.zhihu.com/p/33461281">谈谈调度 - Linux O(1)</a></p>
+
+<h1 id="二-内存">二：内存</h1>
+
+<h2 id="2-1-地址空间">2.1 地址空间</h2>
+
+<h3 id="2-1-1-linux进程地址空间">2.1.1 Linux进程地址空间</h3>
+
+<p><img src="/Linux/Linux进程地址空间.png" alt="Linux虚拟内存空间" /></p>
+
+<ol>
+<li><p><code>代码段 .txt</code>：编译后的机器指令，内存共享；</p></li>
+
+<li><p><code>数据段 .data</code>：初始化了的全局变量和局部静态变量；</p></li>
+
+<li><p><code>BSS段 .bss</code>：未初始化的全局变量和局部静态变量；（记录大小总和，预留位置，文件中不占空间）</p>
+
+<p>BSS段在目标文件和可执行文件中不占用空间，但是在装载时占用地址空间，链接时分配虚拟空间。</p></li>
+
+<li><p>Heap：程序动态分配的内存区域；</p>
+
+<p>程序向操作系统申请一块适当大小的堆空间，然后由程序自己管理这块堆空间，具体来讲，管理堆空间分配的往往是程序的运行时库。</p>
+
+<p>运行库相当于是向操作系统批发了一块较大的堆空间，然后零售给程序用。</p>
+
+<p><strong>mmap()作用就是向操作系统申请一段虚拟地址空间</strong>，这块虚拟地址空间可以映射到某个文件(最初的作用)，如果不将地址映射到某个文件时，这块空间为匿名空间，可以拿来作为堆空间。</p>
+
+<p><strong>malloc()</strong>处理用户的空间请求：对于小于128KB的请求时，在现有堆空间中分配；对于大于128KB的请求时，会使用mmap()函数分配一块匿名空间，然后在这个匿名空间中为用户分配空间。</p></li>
+
+<li><p>动态链接库映射区：用于映射装载的动态链接库；</p></li>
+
+<li><p><code>Stack</code>：维护函数调用的上下文；</p></li>
+
+<li><p><code>内核区</code>。</p></li>
+</ol>
+
+<h3 id="2-1-2-常见问题">2.1.2 常见问题</h3>
+
+<ul>
+<li><p><strong>位与寻址空间的关系</strong>：为什么32位是4GB？</p>
+
+<p>请注意32是“地址”总线的宽度，即可以寻址的地址个数是2的32次方个。</p>
+
+<p>而计算机中以字节位单位存储和解释信息，每个地址（即每个门牌号）指示的空间是一个字节B（即每个门牌号指示的房间大小是一个字节B），那么就是2的32次方个B的房间</p>
+
+<p>32位机器，物理空间有4GB，但是计算机只装了512MB的内存，那么物理地址的真正有效部分知识一部分地址，0X00000000~0x1FFFFFFF,其他部分是无效的。</p></li>
+</ul>
+
+<h2 id="2-2-地址翻译">2.2 地址翻译</h2>
+
+<ol>
+<li><p>相关术语</p>
+
+<ul>
+<li><p>MMU（memory management unit）：CPU芯片上的硬件，利用存放在内存中的页表来动态翻译虚拟地址。</p></li>
+
+<li><p>PTE（page table entry）：页表条目，有有效位判断是否有物理页分配。</p></li>
+
+<li><p>TLB（ translation lookaside buffer）：快表，PTE的缓存，位于MMU。</p></li>
+</ul></li>
+
+<li><p>页面命中时，CPU硬件的执行步骤。</p>
+
+<p><img src="/Linux/%E9%A1%B5%E9%9D%A2%E5%91%BD%E4%B8%AD.png" alt="页面命中" /></p>
+
+<p><img src="/Linux/页面命中过程.png" alt="页面命中过程" /></p></li>
+
+<li><p>缺页时，要求硬件和操作系统内核协作完成。</p>
+
+<p><img src="/Linux/%E7%BC%BA%E9%A1%B5.png" alt="缺页" /></p>
+
+<p><img src="/Linux/缺页过程.png" alt="缺页过程" /></p></li>
+
+<li><p>Linux缺页异常处理</p></li>
+</ol>
+
+<p>深入理解操作系统 P555</p>
+
+<h2 id="2-3-内存分配和回收">2.3 内存分配和回收</h2>
+
+<ol>
+<li><p>内存分配的原理</p>
+
+<p>从操作系统角度来看，进程分配内存有两种方式，分别由两个系统调用完成：<strong>brk和mmap（不考虑共享内存）。</strong></p>
+
+<ul>
+<li><p>brk是将数据段(.data)的最高地址指针_edata往高地址推；</p></li>
+
+<li><p>mmap是在进程的虚拟地址空间中（堆和栈中间，称为文件映射区域的地方）找一块空闲的虚拟内存。</p></li>
+</ul>
+
+<p>这两种方式分配的都是虚拟内存，没有分配物理内存<strong>。</strong>在第一次访问已分配的虚拟地址空间的时候，发生缺页中断，操作系统负责分配物理内存，然后建立虚拟内存和物理内存之间的映射关系。</p></li>
+
+<li><p>Malloc函数实现原理：在标准C库中，提供了malloc/free函数分配释放内存，这两个函数底层是由brk，mmap，munmap这些系统调用实现的。<a href="https://www.cnblogs.com/vinozly/p/5489138.html">参考</a></p>
+
+<ul>
+<li>malloc小于128k的内存，使用brk分配内存。将_edata往高地址推(只分配虚拟空间，不对应物理内存(因此没有初始化)。</li>
+<li>malloc大于128k的内存，使用mmap分配内存，在堆和栈之间找一块空闲内存分配(对应独立内存，而且初始化为0)</li>
+</ul>
+
+<p>优缺点：</p>
+
+<ul>
+<li>brk() 方式的缓存，可以减少缺页异常的发生，提高内存访问效率。不过，由于这些内存没有归还系统，在内存工作繁忙时，频繁的内存分配和释放会造成内存碎片。</li>
+<li>而 mmap() 方式分配的内存，会在释放时直接归还系统，所以每次mmap都会发生缺页异常。在内存工作繁忙时，频繁的内存分配会导致大量的缺页异常，使内核的管理负担增大。这也是malloc只对大块内存使用mmap的原因。</li>
+</ul></li>
+
+<li><p><a href="https://www.cnblogs.com/wuchanming/p/4370160.html">Windows内存管理和linux内存管理</a></p></li>
+</ol>
+
+<h1 id="三-io">三：IO</h1>
+
+<h3 id="3-1-unix下5种io模型-https-www-jianshu-com-p-20dd66a829a6">3.1 <a href="https://www.jianshu.com/p/20dd66a829a6">Unix下5种IO模型</a></h3>
+
+<ol>
+<li><p>阻塞I/O</p></li>
+
+<li><p>非阻塞I/O</p></li>
+
+<li><p>I/O复用（select和poll不知道哪个连接产生事件需要挨个去问，epoll知道哪个连接有I/O流事件产生，然后处理这个连接）</p></li>
+
+<li><p>信号驱动I/O（SIGIO）</p></li>
+
+<li><p>异步I/O（POSIX.1的aio_系列函数）</p></li>
+</ol>
+
+<blockquote>
+<p>Linux高性能服务器编程</p>
+
+<p>同步IO：用户自行执行IO操作，将数据从内核缓冲区读入用户缓冲区；</p>
+
+<p>异步IO：内核来执行IO操作，数据在内核缓冲区和用户缓冲区之间的移动是由内核来完成的；</p>
+
+<p>阻塞IO：因为无法立即执行，而被操作系统刮起，直到等待的时间发生；</p>
+
+<p>非阻塞IO：执行的系统调用总是立即返回，而不管事件是否已经发生；</p>
+</blockquote>
+
+<h3 id="3-2-linux-io-文件访问方式">3.2 Linux IO/文件访问方式</h3>
+
+<ol>
+<li><p>缓存IO</p>
+
+<p>当应用程序调用 read() 系统调用读取一块数据的时候，如果该块数据已经在内存中了，那么就直接从内存中读出该数据并返回给应用程序；如果该块数据不在内存中，那么数据会被从磁盘上读到页高缓存中去，然后再从页缓存中拷贝到用户地址空间中去。如果一个进程读取某个文件，那么其他进程就都不可以读取或者更改该文件；</p>
+
+<p>对于写数据操作来说，当一个进程调用了 write() 系统调用往某个文件中写数据的时候，数据会先从用户地址空间拷贝到操作系统内核地址空间的页缓存中去，然后才被写到磁盘上。</p>
+
+<ul>
+<li><p>同步IO</p>
+
+<p>如果用户采用的是同步写机制（ synchronous writes ）, 那么数据会立即被写回到磁盘上，应用程序会一直等到数据被写完为止；</p></li>
+
+<li><p>标准IO</p>
+
+<p>如果用户采用的是延迟写机制（ deferred writes ），那么应用程序就完全不需要等到数据全部被写回到磁盘，数据只要被写到页缓存中去就可以了。</p></li>
+</ul></li>
+
+<li><p>内存映射方式：实现方式mmap</p>
+
+<p>所谓内存映射文件，就是将文件映射到内存，文件对应于内存中的一个字节数组，对文件的操作变为对这个字节数组的操作，而字节数组的操作直接映射到文件上。这种映射可以是映射文件全部区域，也可以是只映射一部分区域。</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*xvxPz9VhYoJx2AOFPbaSWw.png" alt="" /></p></li>
+
+<li><p>直接IO</p>
+
+<p>数据均直接在用户地址空间的缓冲区和磁盘之间直接进行传输，完全不需要页缓存的支持。操作系统层提供的缓存往往会使应用程序在读写数据的时候获得更好的性能，但是对于某些特殊的应用程序，比如说数据库管理系统这类应用，他们更倾向于选择他们自己的缓存机制，因为数据库管理系统往往比操作系统更了解数据库中存放的数据，数据库管理系统可以提供一种更加有效的缓存机制来提高数据库中数据的存取性能。</p></li>
+</ol>
+
+<p><strong>零拷贝：zero copy</strong></p>
+
+<p><a href="https://mp.weixin.qq.com/s/-rzyDpckS9CUQblAUac0FQ">https://mp.weixin.qq.com/s/-rzyDpckS9CUQblAUac0FQ</a></p>
+
+<h3 id="3-3-高并发io-select-poll-epoll">3.3 高并发IO：select/poll/epoll</h3>
+
+<ol>
+<li><p><strong>select</strong></p>
+
+<p>用一个 fd_set 结构体来告诉内核同时监控多个文件句柄，当其中有文件句柄的状态发生指定变化（例如某句柄由不可用变为可用）或超时，则调用返回。之后应用可以使用 FD_ISSET 来逐个查看是哪个文件句柄的状态发生了变化。这样做，小规模的连接问题不大，但当连接数很多（文件句柄个数很多）的时候，逐个检查状态就很慢了。因此，select 往往存在管理的句柄上限（FD_SETSIZE）。同时，在使用上，因为只有一个字段记录关注和发生事件，每次调用之前要重新初始化 fd_set 结构体。</p>
+
+<p>缺点：句柄上限+重复初始化+逐个排查所有文件句柄状态效率不高。</p></li>
+
+<li><p><strong>poll</strong></p>
+
+<p>poll 主要解决 select 的前两个问题：通过一个 pollfd 数组向内核传递需要关注的事件消除文件句柄上限，同时使用不同字段分别标注关注事件和发生事件，来避免重复初始化。</p>
+
+<p>缺点：逐个排查所有文件句柄状态效率不高。</p></li>
+
+<li><p><strong>epoll</strong></p>
+
+<p>既然逐个排查所有文件句柄状态效率不高，很自然的，如果调用返回的时候只给应用提供发生了状态变化（很可能是数据 ready）的文件句柄，进行排查的效率不就高多了么。epoll 采用了这种设计，适用于大规模的应用场景。</p>
+
+<p>执行epoll_create会在内核的高速cache区中建立一颗红黑树以及就绪链表(该链表存储已经就绪的文件描述符)。接着用户执行的epoll_ctl函数添加文件描述符会在红黑树上增加相应的结点。</p>
+
+<p>内核在检测到某文件描述符可读/可写时会调用回调函数,该回调函数将文件描述符放在就绪链表中。</p>
+
+<p>epoll_wait只用观察就绪链表中有无数据即可,最后将链表的数据返回给数组并返回就绪的数量。内核将就绪的文件描述符放在传入的数组中,所以只用遍历依次处理即可。这里返回的文件描述符是通过mmap让内核和用户空间共享同一块内存实现传递的,减少了不必要的拷贝。</p>
+
+<p>问题归纳：依赖特定平台（Linux）。</p></li>
+
+<li><p><strong>libevent</strong></p>
+
+<p>由于epoll, kqueue, IOCP每个接口都有自己的特点，程序移植非常困难，于是需要对这些接口进行封装，以让它们易于使用和移植，其中libevent库就是其中之一。跨平台，封装底层平台的调用，提供统一的 API，但底层在不同平台上自动选择合适的调用。</p></li>
+
+<li><p>Select/poll/epoll对比</p>
+
+<ul>
+<li><strong>select有句柄上限，而poll没有上限原因？</strong></li>
+</ul>
+
+<p>​               undefinedselect使用位域的方式来传递关心的文件描述符，位域就有最大长度，在Unix下是256，在Linux下是1024，好像可以调大，但是不方便；</p>
+
+<p>​      undefinedpoll采用链表来进行文件描述符的存储，没有长度限制</p>
+
+<ul>
+<li><strong>epoll比select和poll高效的原因主要有两点：</strong></li>
+</ul>
+
+<p>undefined减少了用户态和内核态之间的文件描述符拷贝</p>
+
+<p>undefined减少了对就绪文件描述符的遍历</p>
+
+<ul>
+<li><strong>epoll的两种模型</strong></li>
+</ul>
+
+<p>ET (Edge Triggered) 边沿触发</p>
+
+<p>来了信件，指示板上的灯只闪一下。</p>
+
+<p>LT (Level Triggered) 水平触发</p>
+
+<p>来了信件，指示板上的灯一直亮着，直到信箱中的信全部被取走。</p>
+
+<ul>
+<li><strong>Epoll和select的区别；</strong></li>
+</ul>
+
+<p><strong>Select，内核不会为其维护状态。Epoll，内核会为其维护状态。</strong></p>
+
+<p>因此，每次调用select的时候，都需要重新设置fd_set（数组），然后把整个集合拷贝到内核中。而Epoll，由于内核为它维护了状态（具体是通过创建一个匿名文件，整个匿名文件关联了一个颗红黑树，这颗红黑树保存了之前关注过的epoll_event），因此，如果没有需要新添加或者删除，修改的fd，只需直接epoll_wait就可以了。</p>
+
+<p>并且，这两个函数调用返回的结果也有所差别。Select会把整个fd_set从内核空间拷贝到用户空间，而epoll只返回就绪事件的列表。</p>
+
+<p>因此，epoll性能往往会优于select。</p></li>
+</ol>
+
+<h1 id="四-常见问题">四：常见问题</h1>
+
+<ol>
+<li><a href="http://www.cnblogs.com/viviwind/archive/2012/09/22/2698450.html">用户态和内核态的概念区别</a></li>
+<li><a href="https://time.geekbang.org/column/article/69859">CPU上下文切换</a></li>
+<li>孤儿进程与僵尸进程[总结]</li>
+<li></li>
+</ol>
+
+<p>参考资料：</p>
+
+<p>鸟哥Linux在线版本<a href="http://cn.linux.vbird.org">http://cn.linux.vbird.org</a></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">梦工厂</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-03-04
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/http%E5%8D%8F%E8%AE%AE/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">HTTP协议</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/%E7%A1%AC%E7%9B%98/">
+            <span class="next-text nav-default">文件系统</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = '梦工厂';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><div id="lv-container" data-id="city" data-uid="MTAyMC80MjkyOC8xOTQ3NA==">
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+
+        if (typeof LivereTower === 'function') { return; }
+
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+    <noscript>Please enable JavaScript to view the comments powered by <a href="https://livere.com/">LiveRe.</a></noscript>
+    </div><div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2019-03-04 22:32:23 \x2b0800 CST',
+        title: 'Linux系统',
+        clientID: '2c3c926122f4c09d8aac',
+        clientSecret: '975341b046318c393dc8e3fe7aad003b46cfc210',
+        repo: 'blog',
+        owner: 'menggongchang',
+        admin: ['menggongchang'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">梦工厂</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
