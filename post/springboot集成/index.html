@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>SpringBoot集成 - 梦工厂</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="梦工厂" /><meta name="description" content="一：SpringBoot &#43; Mysql pom.xml中添加依赖 1 2 3 4 5 &amp;lt;!-- mysql --&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;mysql&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;mysql-connector-java&amp;lt;/artifactId&amp;gt; &amp;lt;/dependency&amp;gt; application.properties中添加数据源 1 2 3 4" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.53 with even 4.0.0" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/springboot%E9%9B%86%E6%88%90/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="SpringBoot集成" />
+<meta property="og:description" content="一：SpringBoot &#43; Mysql pom.xml中添加依赖 1 2 3 4 5 &lt;!-- mysql --&gt; &lt;dependency&gt; &lt;groupId&gt;mysql&lt;/groupId&gt; &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt; &lt;/dependency&gt; application.properties中添加数据源 1 2 3 4" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/springboot%E9%9B%86%E6%88%90/" /><meta property="article:published_time" content="2019-03-09T15:55:16&#43;08:00"/>
+<meta property="article:modified_time" content="2019-03-09T15:55:16&#43;08:00"/>
+
+<meta itemprop="name" content="SpringBoot集成">
+<meta itemprop="description" content="一：SpringBoot &#43; Mysql pom.xml中添加依赖 1 2 3 4 5 &lt;!-- mysql --&gt; &lt;dependency&gt; &lt;groupId&gt;mysql&lt;/groupId&gt; &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt; &lt;/dependency&gt; application.properties中添加数据源 1 2 3 4">
+
+
+<meta itemprop="datePublished" content="2019-03-09T15:55:16&#43;08:00" />
+<meta itemprop="dateModified" content="2019-03-09T15:55:16&#43;08:00" />
+<meta itemprop="wordCount" content="672">
+
+
+
+<meta itemprop="keywords" content="配置," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SpringBoot集成"/>
+<meta name="twitter:description" content="一：SpringBoot &#43; Mysql pom.xml中添加依赖 1 2 3 4 5 &lt;!-- mysql --&gt; &lt;dependency&gt; &lt;groupId&gt;mysql&lt;/groupId&gt; &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt; &lt;/dependency&gt; application.properties中添加数据源 1 2 3 4"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">梦工厂</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">梦工厂</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">SpringBoot集成</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-03-09 </span>
+        <div class="post-category">
+            <a href="/categories/java/"> Java </a>
+            </div>
+          <span class="more-meta"> 约 672 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#一-springboot-mysql">一：SpringBoot + Mysql</a></li>
+<li><a href="#二-springboot-mybatis">二：SpringBoot + Mybatis</a></li>
+<li><a href="#三-springboot-mybatis-generator自动生成代码">三：SpringBoot + Mybatis generator自动生成代码</a></li>
+<li><a href="#四-springboot-mybatis-druid-多数据源">四：SpringBoot + Mybatis + Druid 多数据源</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<h3 id="一-springboot-mysql">一：SpringBoot + Mysql</h3>
+
+<ol>
+<li><p>pom.xml中添加依赖</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">&lt;!-- mysql --&gt;
+&lt;dependency&gt;
+&lt;groupId&gt;mysql&lt;/groupId&gt;
+&lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+&lt;/dependency&gt;</pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>application.properties中添加数据源</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">spring.datasource.url=jdbc:mysql://127.0.0.1:3306/test?characterEncoding=UTF-8
+spring.datasource.username=root
+spring.datasource.password=123456
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver</pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+
+<h3 id="二-springboot-mybatis">二：SpringBoot + Mybatis</h3>
+
+<ol>
+<li><p>SpringBoot+Mysql</p></li>
+
+<li><p>集成Mybatis，pom.xml中添加依赖</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="c">&lt;!-- mybatis --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+	<span class="nt">&lt;groupId&gt;</span>org.mybatis.spring.boot<span class="nt">&lt;/groupId&gt;</span>
+	<span class="nt">&lt;artifactId&gt;</span>mybatis-spring-boot-starter<span class="nt">&lt;/artifactId&gt;</span>
+	<span class="nt">&lt;version&gt;</span>1.3.2<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>SpringBoot + Mybatis generator</p></li>
+
+<li><p>配置application.properties中Mybatis配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">mybatis.typeAliasesPackage=com.example.demo.domain
+mybatis.mapperLocations=classpath:mapper/*.xml</pre></td></tr></table>
+</div>
+</div>
+<p>启动类添加包扫描
+<code>@MapperScan(&ldquo;com.example.demo.dao&rdquo;)</code></p></li>
+</ol>
+
+<h3 id="三-springboot-mybatis-generator自动生成代码">三：SpringBoot + Mybatis generator自动生成代码</h3>
+
+<ol>
+<li><p>数据库SQL语句</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">ssm</span><span class="p">;</span>
+<span class="n">use</span> <span class="n">ssm</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="k">user</span><span class="o">`</span> <span class="p">(</span>
+ <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">telephone</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="s1">&#39;&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;手机号&#39;</span><span class="p">,</span>
+ <span class="o">`</span><span class="n">user_address</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="s1">&#39;&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;地址&#39;</span><span class="p">,</span>
+ <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">)</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">MyISAM</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span><span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>修改 <code>pom.xml</code>，添加插件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="c">&lt;!-- mybatis generator 自动生成代码插件 --&gt;</span>
+<span class="nt">&lt;plugin&gt;</span>
+   <span class="nt">&lt;groupId&gt;</span>org.mybatis.generator<span class="nt">&lt;/groupId&gt;</span>
+   <span class="nt">&lt;artifactId&gt;</span>mybatis-generator-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+   <span class="nt">&lt;version&gt;</span>1.3.2<span class="nt">&lt;/version&gt;</span>
+   <span class="nt">&lt;dependencies&gt;</span>
+       <span class="nt">&lt;dependency&gt;</span>
+           <span class="nt">&lt;groupId&gt;</span>mysql<span class="nt">&lt;/groupId&gt;</span>
+           <span class="nt">&lt;artifactId&gt;</span>mysql-connector-java<span class="nt">&lt;/artifactId&gt;</span>
+           <span class="nt">&lt;version&gt;</span>${mysql.version}<span class="nt">&lt;/version&gt;</span>
+       <span class="nt">&lt;/dependency&gt;</span>
+   <span class="nt">&lt;/dependencies&gt;</span>
+   <span class="nt">&lt;configuration&gt;</span>
+       <span class="nt">&lt;configurationFile&gt;</span>src/main/resources/generatorConfig.xml<span class="nt">&lt;/configurationFile&gt;</span>
+       <span class="nt">&lt;overwrite&gt;</span>true<span class="nt">&lt;/overwrite&gt;</span>
+       <span class="nt">&lt;verbose&gt;</span>true<span class="nt">&lt;/verbose&gt;</span>
+   <span class="nt">&lt;/configuration&gt;</span>
+<span class="nt">&lt;/plugin&gt;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>Mysql 版本这样写比较好，不需要考虑版本号；</p></li>
+
+<li><p>在 <code>resources</code> 目录下添加配置文件 <code>generatorConfig.xml</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span class="cp">&lt;!DOCTYPE generatorConfiguration
+</span><span class="cp">       PUBLIC &#34;-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN&#34;
+</span><span class="cp">       &#34;http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd&#34;&gt;</span>
+<span class="nt">&lt;generatorConfiguration&gt;</span>
+   <span class="nt">&lt;context</span> <span class="na">id=</span><span class="s">&#34;Mysql&#34;</span> <span class="na">targetRuntime=</span><span class="s">&#34;MyBatis3&#34;</span><span class="nt">&gt;</span>
+           
+       <span class="c">&lt;!--数据库链接URL，用户名、密码 --&gt;</span>
+       <span class="nt">&lt;jdbcConnection</span> <span class="na">driverClass=</span><span class="s">&#34;com.mysql.jdbc.Driver&#34;</span>
+                       <span class="na">connectionURL=</span><span class="s">&#34;jdbc:mysql://localhost:3306/ssm&#34;</span>
+                       <span class="na">userId=</span><span class="s">&#34;root&#34;</span>
+                       <span class="na">password=</span><span class="s">&#34;12345678&#34;</span><span class="nt">&gt;</span>
+       <span class="nt">&lt;/jdbcConnection&gt;</span>
+   
+       <span class="nt">&lt;javaTypeResolver&gt;</span>
+           <span class="c">&lt;!-- This property is used to specify whether MyBatis Generator should
+</span><span class="c">               force the use of java.math.BigDecimal for DECIMAL and NUMERIC fields, --&gt;</span>
+           <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;forceBigDecimals&#34;</span> <span class="na">value=</span><span class="s">&#34;false&#34;</span> <span class="nt">/&gt;</span>
+       <span class="nt">&lt;/javaTypeResolver&gt;</span>
+           
+       <span class="c">&lt;!-- 生成模型的包名和位置 --&gt;</span>
+       <span class="nt">&lt;javaModelGenerator</span> <span class="na">targetPackage=</span><span class="s">&#34;com.zm.mbg_demo.entity&#34;</span> <span class="na">targetProject=</span><span class="s">&#34;src/main/java&#34;</span><span class="nt">&gt;</span>
+           <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;enableSubPackages&#34;</span> <span class="na">value=</span><span class="s">&#34;true&#34;</span> <span class="nt">/&gt;</span>
+           <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;trimStrings&#34;</span> <span class="na">value=</span><span class="s">&#34;true&#34;</span> <span class="nt">/&gt;</span>
+       <span class="nt">&lt;/javaModelGenerator&gt;</span>
+           
+       <span class="c">&lt;!-- 生成映射文件的包名和位置--&gt;</span>
+       <span class="nt">&lt;sqlMapGenerator</span> <span class="na">targetPackage=</span><span class="s">&#34;mapper&#34;</span> <span class="na">targetProject=</span><span class="s">&#34;src/main/resources&#34;</span><span class="nt">&gt;</span>
+           <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;enableSubPackages&#34;</span> <span class="na">value=</span><span class="s">&#34;true&#34;</span><span class="nt">/&gt;</span>
+       <span class="nt">&lt;/sqlMapGenerator&gt;</span>
+           
+       <span class="c">&lt;!-- 生成DAO的包名和位置 --&gt;</span>
+       <span class="nt">&lt;javaClientGenerator</span> <span class="na">type=</span><span class="s">&#34;XMLMAPPER&#34;</span> <span class="na">targetPackage=</span><span class="s">&#34;com.zm.mbg_demo.dao&#34;</span> <span class="na">implementationPackage=</span><span class="s">&#34;com.zm.mbg_demo.dao.impl&#34;</span>  <span class="na">targetProject=</span><span class="s">&#34;src/main/java&#34;</span><span class="nt">&gt;</span>
+           <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;enableSubPackages&#34;</span> <span class="na">value=</span><span class="s">&#34;true&#34;</span> <span class="nt">/&gt;</span>
+       <span class="nt">&lt;/javaClientGenerator&gt;</span>
+   
+       <span class="c">&lt;!-- 要生成哪些表和实体类 --&gt;</span>
+       <span class="nt">&lt;table</span> <span class="na">tableName=</span><span class="s">&#34;user&#34;</span>
+              <span class="na">enableCountByExample=</span><span class="s">&#34;false&#34;</span> <span class="na">enableUpdateByExample=</span><span class="s">&#34;false&#34;</span>
+              <span class="na">enableDeleteByExample=</span><span class="s">&#34;false&#34;</span> <span class="na">enableSelectByExample=</span><span class="s">&#34;false&#34;</span>
+              <span class="na">selectByExampleQueryId=</span><span class="s">&#34;false&#34;</span><span class="nt">&gt;</span>
+       <span class="nt">&lt;/table&gt;</span>
+   <span class="nt">&lt;/context&gt;</span>
+<span class="nt">&lt;/generatorConfiguration&gt;</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>运行插件；</p></li>
+</ol>
+
+<h3 id="四-springboot-mybatis-druid-多数据源">四：SpringBoot + Mybatis + Druid 多数据源</h3>
+
+<ol>
+<li><a href="https://www.bysocket.com/?p=1712">使用参考链接</a></li>
+
+<li><p>场景：不同的DataSource，SqlSessionFactory和DAO层，在业务逻辑层做整合。
+<img src="http://www.bysocket.com/wp-content/uploads/2017/03/WX20170324-144830.png" alt="" /></p></li>
+
+<li><p>读写分离</p></li>
+</ol>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">梦工厂</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-03-09
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E9%85%8D%E7%BD%AE/">配置</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/%E5%85%B3%E4%BA%8E%E6%A0%A1%E6%8B%9B2018-2019/">
+            <span class="next-text nav-default">校招之路：2018-2019</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = '梦工厂';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><div id="lv-container" data-id="city" data-uid="MTAyMC80MjkyOC8xOTQ3NA==">
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+
+        if (typeof LivereTower === 'function') { return; }
+
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+    <noscript>Please enable JavaScript to view the comments powered by <a href="https://livere.com/">LiveRe.</a></noscript>
+    </div><div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2019-03-09 15:55:16 \x2b0800 CST',
+        title: 'SpringBoot集成',
+        clientID: '2c3c926122f4c09d8aac',
+        clientSecret: '975341b046318c393dc8e3fe7aad003b46cfc210',
+        repo: 'blog',
+        owner: 'menggongchang',
+        admin: ['menggongchang'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">梦工厂</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
