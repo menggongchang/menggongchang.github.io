@@ -6,10 +6,28 @@
     <description>Recent content on 梦工厂</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 09 Mar 2019 15:55:16 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 19 May 2019 17:08:00 +0800</lastBuildDate>
     
 	<atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>2019大事记</title>
+      <link>http://localhost:1313/post/%E7%94%9F%E6%B4%BB/2019%E5%A4%A7%E4%BA%8B%E8%AE%B0/</link>
+      <pubDate>Sun, 19 May 2019 17:08:00 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/%E7%94%9F%E6%B4%BB/2019%E5%A4%A7%E4%BA%8B%E8%AE%B0/</guid>
+      <description>毕业答辩 5.5 盲审结果，&amp;rdquo;两个2&amp;rdquo;； 5.12 学院预答辩，&amp;rdquo;传说中的死亡之组&amp;rdquo;； 5.15 导师组正式答辩，&amp;rd</description>
+    </item>
+    
+    <item>
+      <title>广州攻略</title>
+      <link>http://localhost:1313/post/%E7%94%9F%E6%B4%BB/%E5%B9%BF%E5%B7%9E%E6%94%BB%E7%95%A5/</link>
+      <pubDate>Sat, 04 May 2019 16:25:11 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/%E7%94%9F%E6%B4%BB/%E5%B9%BF%E5%B7%9E%E6%94%BB%E7%95%A5/</guid>
+      <description>玩 爬山 白云山 门票：5 游玩项目：蹦极300、飞索268、滑道30、滑草15、缆车25。 注意：南门附近的云台花园不要去，旁边就是白云山南门。 大夫</description>
+    </item>
     
     <item>
       <title>SpringBoot集成</title>

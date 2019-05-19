@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>生活 on 梦工厂</title>
+    <link>http://localhost:1313/categories/%E7%94%9F%E6%B4%BB/</link>
+    <description>Recent content in 生活 on 梦工厂</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 19 May 2019 17:08:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/categories/%E7%94%9F%E6%B4%BB/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>2019大事记</title>
+      <link>http://localhost:1313/post/%E7%94%9F%E6%B4%BB/2019%E5%A4%A7%E4%BA%8B%E8%AE%B0/</link>
+      <pubDate>Sun, 19 May 2019 17:08:00 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/%E7%94%9F%E6%B4%BB/2019%E5%A4%A7%E4%BA%8B%E8%AE%B0/</guid>
+      <description>毕业答辩 5.5 盲审结果，&amp;rdquo;两个2&amp;rdquo;； 5.12 学院预答辩，&amp;rdquo;传说中的死亡之组&amp;rdquo;； 5.15 导师组正式答辩，&amp;rd</description>
+    </item>
+    
+  </channel>
+</rss>
