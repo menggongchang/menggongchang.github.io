@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>博客配置 - 梦工厂</title>
+  <title>Linux命令 - 梦工厂</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="梦工厂" /><meta name="description" content="一 博客配置 安装引擎：Hugo 选择主题：Even 关联 GitHub 运行命令hugo -t even Hugo将编译所有文件并输出到public目录，你需要在github" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="梦工厂" /><meta name="description" content="Linux下查询80端口的占用情况，占用的进程，如何终止？ 查询端口是否被占用，被哪个进程占用有两种方式： 1 2 1、netstat -anl | grep &amp;#34;80&amp;#34; 2、l" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.53 with even 4.0.0" />
 
 
-<link rel="canonical" href="http://localhost:1313/post/%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE/" />
+<link rel="canonical" href="http://localhost:1313/post/linux%E5%91%BD%E4%BB%A4/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -38,26 +38,26 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="博客配置" />
-<meta property="og:description" content="一 博客配置 安装引擎：Hugo 选择主题：Even 关联 GitHub 运行命令hugo -t even Hugo将编译所有文件并输出到public目录，你需要在github" />
+<meta property="og:title" content="Linux命令" />
+<meta property="og:description" content="Linux下查询80端口的占用情况，占用的进程，如何终止？ 查询端口是否被占用，被哪个进程占用有两种方式： 1 2 1、netstat -anl | grep &#34;80&#34; 2、l" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:1313/post/%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE/" /><meta property="article:published_time" content="2019-03-01T16:25:11&#43;08:00"/>
-<meta property="article:modified_time" content="2019-03-01T16:25:11&#43;08:00"/>
+<meta property="og:url" content="http://localhost:1313/post/linux%E5%91%BD%E4%BB%A4/" /><meta property="article:published_time" content="2019-03-05T17:36:07&#43;08:00"/>
+<meta property="article:modified_time" content="2019-03-05T17:36:07&#43;08:00"/>
 
-<meta itemprop="name" content="博客配置">
-<meta itemprop="description" content="一 博客配置 安装引擎：Hugo 选择主题：Even 关联 GitHub 运行命令hugo -t even Hugo将编译所有文件并输出到public目录，你需要在github">
-
-
-<meta itemprop="datePublished" content="2019-03-01T16:25:11&#43;08:00" />
-<meta itemprop="dateModified" content="2019-03-01T16:25:11&#43;08:00" />
-<meta itemprop="wordCount" content="517">
+<meta itemprop="name" content="Linux命令">
+<meta itemprop="description" content="Linux下查询80端口的占用情况，占用的进程，如何终止？ 查询端口是否被占用，被哪个进程占用有两种方式： 1 2 1、netstat -anl | grep &#34;80&#34; 2、l">
 
 
+<meta itemprop="datePublished" content="2019-03-05T17:36:07&#43;08:00" />
+<meta itemprop="dateModified" content="2019-03-05T17:36:07&#43;08:00" />
+<meta itemprop="wordCount" content="87">
 
-<meta itemprop="keywords" content="配置," />
+
+
+<meta itemprop="keywords" content="资料," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="博客配置"/>
-<meta name="twitter:description" content="一 博客配置 安装引擎：Hugo 选择主题：Even 关联 GitHub 运行命令hugo -t even Hugo将编译所有文件并输出到public目录，你需要在github"/>
+<meta name="twitter:title" content="Linux命令"/>
+<meta name="twitter:description" content="Linux下查询80端口的占用情况，占用的进程，如何终止？ 查询端口是否被占用，被哪个进程占用有两种方式： 1 2 1、netstat -anl | grep &#34;80&#34; 2、l"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -124,15 +124,15 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">博客配置</h1>
+      <h1 class="post-title">Linux命令</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2019-03-01 </span>
+        <span class="post-time"> 2019-03-05 </span>
         <div class="post-category">
-            <a href="/categories/%E4%B8%AD%E6%96%87/"> 中文 </a>
+            <a href="/categories/linux/"> Linux </a>
             </div>
-          <span class="more-meta"> 约 517 字 </span>
-          <span class="more-meta"> 预计阅读 2 分钟 </span>
+          <span class="more-meta"> 约 87 字 </span>
+          <span class="more-meta"> 预计阅读 1 分钟 </span>
         
       </div>
     </header>
@@ -140,132 +140,28 @@
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
-    <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#一-博客配置">一 博客配置</a></li>
-<li><a href="#二-博客使用">二 博客使用</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
+    
   </div>
 </div>
     <div class="post-content">
-      
+      <ol>
+<li><p>Linux下查询80端口的占用情况，占用的进程，如何终止？</p>
 
-<h4 id="一-博客配置">一 博客配置</h4>
-
-<ol>
-<li><p>安装引擎：<a href="https://gohugo.io/">Hugo</a></p></li>
-
-<li><p>选择主题：<a href="https://blog.olowolo.com/example-site/">Even</a></p></li>
-
-<li><p>关联 GitHub</p>
-
-<p>运行命令<code>hugo -t even</code></p>
-
-<p>Hugo将编译所有文件并输出到<code>public</code>目录，你需要在github上创建repository，名字就是<code>&lt;你的用户名&gt;.github.io</code>，创建完后，返回你本地命令行，进入<code>public</code>目录，执行以下命令：</p>
+<ul>
+<li>查询端口是否被占用，被哪个进程占用有两种方式：</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt">1
 </span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
 </span></pre></td>
 <td class="lntd">
-<pre class="chroma">git init
-git add .
-git commit -m &#34;Initial commit.&#34;
-git remote add origin ...
-git push -u origin master</pre></td></tr></table>
+<pre class="chroma">  1、netstat -anl | grep &#34;80&#34;
+  2、lsof -i:80</pre></td></tr></table>
 </div>
 </div>
-<p>稍等片刻后，打开<code>&lt;你的用户名&gt;.github.io</code>网址，就可以看到你的个人网站了。</p></li>
-
-<li><p>博客更新脚本<code>deploy.sh</code>，位于站点目录下。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="cp">#!/bin/bash
-</span><span class="cp"></span>       
-<span class="nb">echo</span> -e <span class="s2">&#34;\033[0;32mDeploying updates to GitHub...\033[0m&#34;</span>
-       
-<span class="c1"># Build the project.</span>
-hugo -t even <span class="c1"># if using a theme, replace with `hugo -t &lt;YOURTHEME&gt;`</span>
-       
-<span class="c1"># Go To Public folder</span>
-<span class="nb">cd</span> public
-<span class="c1"># Add changes to git.</span>
-git add .
-       
-<span class="c1"># Commit changes.</span>
-<span class="nv">msg</span><span class="o">=</span><span class="s2">&#34;rebuilding site `date`&#34;</span>
-<span class="k">if</span> <span class="o">[</span> <span class="nv">$#</span> -eq <span class="m">1</span> <span class="o">]</span>
-  <span class="k">then</span> <span class="nv">msg</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span>
-<span class="k">fi</span>
-git commit -m <span class="s2">&#34;</span><span class="nv">$msg</span><span class="s2">&#34;</span>
-    
-<span class="c1"># Push source and build repos.</span>
-git push origin master
-    
-<span class="c1"># Come Back up to the Project Root</span>
-<span class="nb">cd</span> ..</code></pre></td></tr></table>
-</div>
-</div></li>
-
-<li><p>添加评论</p>
-
 <ul>
-<li><p>来必力：<a href="https://livere.com">https://livere.com</a> （来自韩国，使用邮箱注册。）</p>
-
-<p>选择免费的city版本安装，安装后复制uid字段，添加到博客的配置文件‘livere_uid’字段。</p></li>
-
-<li><p><a href="https://github.com/gitalk/gitalk">Gitalk</a>，Gitment有问题。</p>
-
-<p><a href="https://knightcai.github.io/2017/12/19/%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0-Gitalk-%E8%AF%84%E8%AE%BA%E6%8F%92%E4%BB%B6/">为博客添加 Gitalk 评论插件</a></p></li>
-</ul></li>
-</ol>
-
-<h4 id="二-博客使用">二 博客使用</h4>
-
-<ol>
-<li>说明
-
-<ul>
-<li><strong>draft</strong> 设置为false的时候会被编译为HTML，true则不会编译和发表，在本地修改文章时候用true。</li>
+<li>终止进程的方式：<code>kill pid</code></li>
 </ul></li>
 </ol>
 
@@ -279,7 +175,7 @@ git push origin master
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
     <span class="item-content">
-        2019-03-01
+        2019-03-05
         
     </span>
   </p>
@@ -288,16 +184,16 @@ git push origin master
 </div>
 <footer class="post-footer">
       <div class="post-tags">
-          <a href="/tags/%E9%85%8D%E7%BD%AE/">配置</a>
+          <a href="/tags/%E8%B5%84%E6%96%99/">资料</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/tcpip%E5%8D%8F%E8%AE%AE%E6%A0%88/">
+        <a class="prev" href="/post/%E5%85%B3%E4%BA%8E%E6%A0%A1%E6%8B%9B2018-2019/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">TCP/IP协议栈</span>
+            <span class="prev-text nav-default">校招之路：2018-2019</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
-        <a class="next" href="/post/tcp%E5%8D%8F%E8%AE%AE/">
-            <span class="next-text nav-default">TCP协议</span>
+        <a class="next" href="/post/%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA/">
+            <span class="next-text nav-default">理解计算机</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
@@ -318,13 +214,28 @@ git push origin master
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><div id="gitalk-container"></div>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><div id="lv-container" data-id="city" data-uid="MTAyMC80MjkyOC8xOTQ3NA==">
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+
+        if (typeof LivereTower === 'function') { return; }
+
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+    <noscript>Please enable JavaScript to view the comments powered by <a href="https://livere.com/">LiveRe.</a></noscript>
+    </div><div id="gitalk-container"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2019-03-01 16:25:11 \x2b0800 CST',
-        title: '博客配置',
+        id: '2019-03-05 17:36:07 \x2b0800 CST',
+        title: 'Linux命令',
         clientID: '2c3c926122f4c09d8aac',
         clientSecret: '975341b046318c393dc8e3fe7aad003b46cfc210',
         repo: 'BlogIssue',

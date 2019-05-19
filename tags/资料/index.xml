@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>资料 on 梦工厂</title>
+    <link>http://localhost:1313/tags/%E8%B5%84%E6%96%99/</link>
+    <description>Recent content in 资料 on 梦工厂</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 05 Mar 2019 17:36:07 +0800</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/%E8%B5%84%E6%96%99/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Linux命令</title>
+      <link>http://localhost:1313/post/linux%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Tue, 05 Mar 2019 17:36:07 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/linux%E5%91%BD%E4%BB%A4/</guid>
+      <description>Linux下查询80端口的占用情况，占用的进程，如何终止？ 查询端口是否被占用，被哪个进程占用有两种方式： 1 2 1、netstat -anl | grep &amp;#34;80&amp;#34; 2、l</description>
+    </item>
+    
+  </channel>
+</rss>
